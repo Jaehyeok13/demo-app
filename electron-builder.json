@@ -1,0 +1,28 @@
+{
+  "appId"      : "com.yourname.demo-app",
+  "productName": "Demo App",
+  "copyright"  : "Copyright © 2026",
+  "asar"       : true,
+
+  "files": [
+    "src/**/*",
+    "config/**/*",
+    "assets/**/*",
+    "package.json"
+  ],
+
+  "win": {
+    "target": [{ "target": "nsis", "arch": ["x64", "ia32"] }],
+    "icon"  : "assets/icon.ico"
+  },
+  "mac": {
+    "target"  : [{ "target": "dmg" }],
+    "icon"    : "assets/icon.icns",
+    "category": "public.app-category.utilities"
+  },
+  "nsis": {
+    "oneClick"                          : false,
+    "allowToChangeInstallationDirectory": true
+  },
+  "directories": { "output": "dist" }
+}

@@ -1,0 +1,22 @@
+{
+  "name"       : "demo-app",
+  "version"    : "1.0.0",
+  "description": "License Hub 연동 데모 — 새 프로젝트 뼈대",
+  "main"       : "src/main/main.js",
+  "scripts"    : {
+    "start"      : "chcp 65001 > nul && electron .",
+    "dev"        : "chcp 65001 > nul && electron . --inspect",
+    "build:win"  : "electron-builder --win --x64 --ia32",
+    "build:mac-m": "electron-builder --mac --arm64",
+    "build:mac-i": "electron-builder --mac --x64"
+  },
+  "dependencies": {
+    "crypto-js"      : "^4.2.0",
+    "node-machine-id": "^1.1.12"
+  },
+  "devDependencies": {
+    "electron"         : "^33.0.0",
+    "electron-builder" : "^24.13.3",
+    "electron-reloader": "^1.2.3"
+  }
+}
