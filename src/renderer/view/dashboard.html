@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Demo</title>
+    <link rel="stylesheet" href="../css/app.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Ensure tailwind doesn't conflict with global styling if needed */
+      body { margin: 0; overflow: hidden; }
+    </style>
+</head>
+<body data-edition="free">
+
+<div class="app-container" id="appLayout">
+
+  <!-- Sidebar -->
+  <div class="app-sidebar sidebar" id="appSidebar">
+    <div class="flex justify-between items-center mb-4">
+      <div class="text-[11px] text-[#6e7693] uppercase tracking-widest font-semibold px-2">Navigation</div>
+      <button data-action="toggle-sidebar" class="text-[#aab2cc] hover:text-white p-1 rounded hover:bg-[#141a2b] outline-none">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+    
+    <div class="flex flex-col gap-1 mb-6">
+      <button class="app-nav-item active" data-tab="home">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span>
+        <span>Home (대시보드)</span>
+      </button>
+      <button class="app-nav-item" data-tab="features">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></span>
+        <span>Features (기능실험)</span>
+      </button>
+      <button class="app-nav-item" data-tab="settings">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2a10 10 0 1 0 0 20c1.7 0 2-1 2-2s-.4-1.5-1-2-1-1.2-1-2c0-1.4 1.2-2.5 3-2.5h2c2.5 0 5-2.4 5-5.5C22 5 17.5 2 12 2Z"/></svg></span>
+        <span>Settings (환경설정)</span>
+      </button>
+    </div>
+
+    <div class="mt-auto border-t border-[#1d2438] pt-4">
+      <div class="bg-gradient-to-br from-[#141a2b] to-[#1b2236] border border-[#262e44] rounded-[10px] p-3">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[10.5px] text-[#6e7693]">Edition</span>
+          <span class="px-2 py-0.5 rounded-full bg-[#22c55e22] text-[#22c55e] border border-[#22c55e44] text-[10px] font-bold">Active</span>
+        </div>
+        <div id="sideLicEdition" class="text-sm font-bold text-[#7b89ff]">Standard</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="app-main relative">
+    
+    <!-- Titlebar (Instead of old Header) -->
+    <div class="flex items-center justify-between px-4 h-12 bg-[#0f1320] border-b border-[#1d2438]">
+      <div class="flex items-center gap-2 font-semibold text-sm text-[#eef1fb]">
+        <span class="w-2 h-2 rounded-full bg-[#5b6bff] shadow-[0_0_10px_2px_#5b6bff26]"></span> App Demo
+      </div>
+      <!-- Top Authentication -->
+      <div class="flex items-center gap-3">
+        <span id="topStatusText" class="text-xs text-[#22c55e] font-mono">● 라이선스 확인됨</span>
+        <span id="topBadgeEdition" class="px-2.5 py-1 rounded-full bg-[#5b6bff26] text-[#7b89ff] text-[10px] font-bold uppercase tracking-wider border border-[#5b6bff40]">Standard</span>
+      </div>
+    </div>
+
+    <!-- Statbar -->
+    <div class="app-statbar">
+      <div class="app-stat">
+        <span class="text-[10.5px] text-[#6e7693] uppercase tracking-widest">Machine ID</span>
+        <span class="text-[15px] font-bold text-white truncate" id="sysMachineId">로딩중...</span>
+      </div>
+      <div class="app-stat">
+        <span class="text-[10.5px] text-[#6e7693] uppercase tracking-widest">App ID</span>
+        <span class="text-[15px] font-bold text-white truncate" id="sysAppId">로딩중...</span>
+      </div>
+      <div class="app-stat">
+        <span class="text-[10.5px] text-[#6e7693] uppercase tracking-widest">Build Version</span>
+        <span class="text-[15px] font-bold text-white font-mono text-[12px]" id="sysBuildVersion">로딩중...</span>
+      </div>
+      <div class="app-stat">
+        <span class="text-[10.5px] text-[#6e7693] uppercase tracking-widest">Session</span>
+        <span class="text-[15px] font-bold text-[#22c55e] font-mono text-[12px] truncate" id="sysSessionId">로딩중...</span>
+      </div>
+    </div>
+
+    <!-- Content Area -->
+    <div class="app-content">
+      
+      <!-- HOME TAB -->
+      <div id="content-home" data-role="tab-panel" class="tab-content active">
+        <div class="mb-6">
+          <span class="text-[11px] text-[#7b89ff] uppercase tracking-widest font-bold mb-1.5 block">Dashboard</span>
+          <h1 class="text-[19px] m-0 mb-1 tracking-tight text-[#eef1fb] font-semibold">통합 대시보드</h1>
+          <p class="m-0 text-[12.5px] text-[#6e7693]">이 데모 툴을 기반으로 각 앱의 화면을 구성합니다. 빠른 실행으로 각 기능을 바로 확인해 보세요.</p>
+        </div>
+
+        <div class="app-hero-banner relative overflow-hidden">
+          <div class="relative z-10 text-[#eef1fb]">
+            <h2 class="m-0 mb-1.5 text-[16px] font-semibold">모든 설정은 [설정] 탭에서 관리합니다</h2>
+            <p class="m-0 text-[12.5px] text-[#aab2cc] max-w-[420px]">Toast, Modal, Theme, License 는 더 이상 흩어진 데모 카드가 아니라 통합 환경설정 패널에서 관리됩니다.</p>
+          </div>
+          <div class="absolute right-8 top-1/2 -translate-y-1/2 w-16 h-16 rounded-[14px] bg-gradient-to-br from-[#5b6bff] to-[#2d3bd8] shadow-[0_0_40px_-8px_#5b6bffaa] rotate-12 opacity-80 mix-blend-screen pointer-events-none"></div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+          <div class="app-card cursor-pointer hover:border-[#5b6bff] hover:-translate-y-0.5 transition-all" onclick="document.querySelector('[data-tab=\'features\']').click()">
+            <div class="w-8 h-8 rounded-[9px] bg-[#5b6bff26] text-[#7b89ff] flex items-center justify-center mb-3">
+               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
+            </div>
+            <div class="text-[13.5px] font-semibold mb-1 text-[#eef1fb]">기능 실험실</div>
+            <div class="text-[11.5px] text-[#6e7693]">모달, 알림, 스토리지</div>
+          </div>
+          <div class="app-card cursor-pointer hover:border-[#5b6bff] hover:-translate-y-0.5 transition-all" onclick="document.querySelector('[data-tab=\'settings\']').click()">
+             <div class="w-8 h-8 rounded-[9px] bg-[#5b6bff26] text-[#7b89ff] flex items-center justify-center mb-3">
+               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2a10 10 0 1 0 0 20c1.7 0 2-1 2-2s-.4-1.5-1-2-1-1.2-1-2c0-1.4 1.2-2.5 3-2.5h2c2.5 0 5-2.4 5-5.5C22 5 17.5 2 12 2Z"/></svg>
+            </div>
+            <div class="text-[13.5px] font-semibold mb-1 text-[#eef1fb]">테마 및 환경설정</div>
+            <div class="text-[11.5px] text-[#6e7693]">시작적 제어부 관리</div>
+          </div>
+          <!-- HWID Demo mapping -->
+          <div class="app-card flex flex-col justify-between">
+             <div class="w-8 h-8 rounded-[9px] bg-[#22c55e22] text-[#22c55e] flex items-center justify-center mb-3">
+               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+            </div>
+            <div class="text-[13.5px] font-semibold mb-1 text-[#eef1fb] truncate" id="homeHwidText">HW-XXX</div>
+            <button type="button" data-action="copy-hwid" class="mt-2 w-full bg-[#141a2b] border border-[#262e44] text-[#aab2cc] rounded-[6px] py-1.5 text-[11px] font-semibold hover:border-[#5b6bff] hover:text-[#eef1fb] transition-all">HWID 복사</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FEATURES TAB -->
+      <div id="content-features" data-role="tab-panel" class="tab-content hidden">
+        <div class="mb-6">
+          <span class="text-[11px] text-[#7b89ff] uppercase tracking-widest font-bold mb-1.5 block">Features</span>
+          <h1 class="text-[19px] m-0 mb-1 tracking-tight text-[#eef1fb] font-semibold">기능 실험실 (Playground)</h1>
+          <p class="m-0 text-[12.5px] text-[#6e7693]">뷰어에 종속된 각종 모듈 트리거를 강제 테스트합니다.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <!-- Notification Test -->
+          <div class="app-card">
+            <h3 class="flex items-center gap-2 m-0 mb-4 text-[12.5px] font-bold text-[#aab2cc] uppercase tracking-wider">
+              <svg class="w-3.5 h-3.5 text-[#7b89ff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              Toast Notifications
+            </h3>
+            <div class="grid grid-cols-2 gap-2 mb-6">
+              <button data-action="toast-success" class="bg-[#141a2b] border border-[#262e44] text-[#aab2cc] rounded-[6px] py-2 text-[12px] font-semibold hover:border-[#22c55e] hover:text-[#eef1fb] transition-all">Success 토스트</button>
+              <button data-action="toast-error" class="bg-[#141a2b] border border-[#262e44] text-[#aab2cc] rounded-[6px] py-2 text-[12px] font-semibold hover:border-[#ef4444] hover:text-[#eef1fb] transition-all">Error 토스트</button>
+              <button data-action="toast-info" class="bg-[#141a2b] border border-[#262e44] text-[#aab2cc] rounded-[6px] py-2 text-[12px] font-semibold hover:border-[#3b82f6] hover:text-[#eef1fb] transition-all">Info 토스트</button>
+              <button data-action="test-notif" class="bg-[#5b6bff26] border border-[#5b6bff40] text-[#7b89ff] rounded-[6px] py-2 text-[12px] font-semibold hover:bg-[#5b6bff] hover:text-white transition-all">통합 설정 가동</button>
+            </div>
+            
+            <h3 class="flex items-center gap-2 m-0 mb-4 text-[12.5px] font-bold text-[#aab2cc] uppercase tracking-wider">
+              <svg class="w-3.5 h-3.5 text-[#7b89ff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
+              Modal Windows
+            </h3>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <button data-action="modal-sm" class="bg-[#141a2b] border border-[#262e44] text-[#aab2cc] rounded-[6px] py-2 text-[12px] font-semibold hover:border-[#5b6bff] hover:text-[#eef1fb] transition-all">Small</button>
+              <button data-action="modal-md" class="bg-[#141a2b] border border-[#262e44] text-[#aab2cc] rounded-[6px] py-2 text-[12px] font-semibold hover:border-[#5b6bff] hover:text-[#eef1fb] transition-all">Medium</button>
+              <button data-action="modal-lg" class="bg-[#141a2b] border border-[#262e44] text-[#aab2cc] rounded-[6px] py-2 text-[12px] font-semibold hover:border-[#5b6bff] hover:text-[#eef1fb] transition-all">Large</button>
+              <button data-action="modal-full" class="bg-[#141a2b] border border-[#262e44] text-[#aab2cc] rounded-[6px] py-2 text-[12px] font-semibold hover:border-[#5b6bff] hover:text-[#eef1fb] transition-all">Full</button>
+            </div>
+          </div>
+
+          <!-- Session Sandbox & Diag Console -->
+          <div class="flex flex-col gap-5">
+            <div class="app-card flex-1">
+               <h3 class="flex items-center gap-2 m-0 mb-4 text-[12.5px] font-bold text-[#aab2cc] uppercase tracking-wider">
+                <svg class="w-3.5 h-3.5 text-[#7b89ff]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                Session Storage
+              </h3>
+              <div class="flex gap-2 mb-3">
+                 <input type="text" class="app-input text-xs h-8" id="p1SessionKey" placeholder="Key" />
+                 <input type="text" class="app-input text-xs h-8" id="p1SessionVal" placeholder="Value" />
+              </div>
+              <div class="flex gap-2">
+                 <button type="button" class="flex-1 bg-[#5b6bff] text-white rounded-[6px] py-1.5 text-[12px] font-semibold hover:bg-[#7b89ff] transition-all" data-action="session-save">쓰기</button>
+                 <button type="button" class="flex-1 bg-[#141a2b] border border-[#262e44] text-[#aab2cc] rounded-[6px] py-1.5 text-[12px] font-semibold hover:border-[#5b6bff] hover:text-white transition-all" data-action="session-load">조회</button>
+              </div>
+            </div>
+            
+            <div class="app-card flex-1 flex flex-col">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="flex items-center gap-2 m-0 text-[12.5px] font-bold text-[#aab2cc] uppercase tracking-wider">
+                  Diag Console
+                </h3>
+                <button type="button" class="text-[10px] text-[#6e7693] hover:text-white transition-colors" data-action="clear-logs">비우기</button>
+              </div>
+              <div class="flex-1 bg-[#0a0d16] border border-[#1d2438] rounded-md p-3 h-[120px] overflow-y-auto text-[11px] font-mono whitespace-pre-wrap text-[#aab2cc]" id="diagConsoleBox"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SETTINGS TAB -->
+      <div id="content-settings" data-role="tab-panel" class="tab-content hidden">
+        <div class="mb-6">
+          <span class="text-[11px] text-[#7b89ff] uppercase tracking-widest font-bold mb-1.5 block">Settings</span>
+          <h1 class="text-[19px] m-0 mb-1 tracking-tight text-[#eef1fb] font-semibold">시스템 환경 설정</h1>
+          <p class="m-0 text-[12.5px] text-[#6e7693]">라이선스 통제, 테마 프리셋, 알림 튜닝 및 애플리케이션 운영 구성입니다.</p>
+        </div>
+
+        <!-- Sub Tabs -->
+        <div class="flex gap-2 mb-6 border-b border-[#1d2438] pb-1">
+          <button class="app-chip active" onclick="switchSettingsPanel('license', this)">라이선스</button>
+          <button class="app-chip" onclick="switchSettingsPanel('themes', this)">테마</button>
+          <button class="app-chip" onclick="switchSettingsPanel('notifs', this)">알림 구성</button>
+        </div>
+
+        <!-- Setting Panels -->
+        <div>
+          <!-- License -->
+          <div id="setPanelLicense" class="app-panel active">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div class="app-card">
+                <h3 class="text-[12.5px] font-bold text-[#aab2cc] uppercase tracking-wider mb-4">가상 라이선스 발급 및 검증</h3>
+                <label class="block text-[11.5px] text-[#6e7693] mb-1.5">라이선스 키</label>
+                <input type="text" id="licFormKey" class="app-input mb-3" placeholder="XXXX-XXXX-XXXX" />
+                <button data-action="submit-lic" class="w-full bg-[#5b6bff] text-white font-bold rounded-[6px] py-2.5 text-[13px] hover:bg-[#7b89ff] transition-colors mb-4">가동 (Verify)</button>
+                
+                <div class="border-t border-[#1d2438] pt-4 mt-4">
+                  <div class="text-[11.5px] text-[#6e7693] mb-2">프리셋 직접 주입</div>
+                  <div class="flex gap-2 text-[11px]">
+                    <button data-action="fill-lic" data-key="DEMO-PRO-MASTER-888" class="bg-[#141a2b] border border-[#262e44] text-[#aab2cc] px-2 py-1.5 rounded hover:text-white">Pro</button>
+                    <button data-action="fill-lic" data-key="DEMO-STD-MASTER-999" class="bg-[#141a2b] border border-[#262e44] text-[#aab2cc] px-2 py-1.5 rounded hover:text-white">Standard</button>
+                    <button data-action="fill-lic" data-key="FREE-0000" class="bg-[#141a2b] border border-[#262e44] text-[#warning] px-2 py-1.5 rounded hover:text-white">Revoke</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Themes -->
+          <div id="setPanelThemes" class="app-panel hidden">
+            <div class="app-card">
+              <h3 class="text-[12.5px] font-bold text-[#aab2cc] uppercase tracking-wider mb-4">어플리케이션 에스테틱</h3>
+              <p class="text-xs text-[#6e7693] mb-4">기본 탑재된 테마 브릿지를 호출하여 어플리케이션 내의 시각적 감성을 변환합니다.</p>
+              
+              <!-- Core ID for demo.view.js theme rendering -->
+              <div id="presetThemesSettings" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
+            </div>
+          </div>
+
+          <!-- Notifs -->
+          <div id="setPanelNotifs" class="app-panel hidden">
+            <div class="app-card max-w-xl">
+              <h3 class="text-[12.5px] font-bold text-[#aab2cc] uppercase tracking-wider mb-4">알림 시그널 구성</h3>
+              
+              <div class="grid grid-cols-2 gap-5 mb-5">
+                <div class="flex flex-col gap-1.5">
+                  <label class="text-[11.5px] text-[#6e7693]">팝업 제목</label>
+                  <input type="text" id="fcToastTitle" class="app-input" value="시스템 안내" />
+                </div>
+                <div class="flex flex-col gap-1.5">
+                  <label class="text-[11.5px] text-[#6e7693]">토스트 유형 (결과 피드백)</label>
+                  <select id="fcToastType" class="app-input">
+                    <option value="info" selected>정보 전달 (Info)</option>
+                    <option value="success">성공 (Success)</option>
+                    <option value="warning">주의 (Warning)</option>
+                    <option value="error">심각 (Error)</option>
+                  </select>
+                </div>
+                <div class="flex flex-col gap-1.5 col-span-2">
+                  <label class="text-[11.5px] text-[#6e7693]">상세 메시지 본문</label>
+                  <input type="text" id="fcToastMsg" class="app-input" value="설정들이 최신화되어 반영 준비를 완료했습니다." />
+                </div>
+              </div>
+
+              <!-- Internal state maps required by demo.view.js -->
+              <div class="bg-[#0f1320] border border-[#1d2438] p-4 rounded-md">
+                 <h4 class="text-[11px] font-bold text-[#eef1fb] mb-3">시스템 알림 스펙 (Variables)</h4>
+                 <div class="grid grid-cols-2 gap-4">
+                   <div class="flex flex-col gap-1.5">
+                     <label class="text-[10px] text-[#6e7693]">유지 시간 (ms)</label>
+                     <select id="setNotifDuration" class="app-input text-[11px] py-1.5" data-action="save-notif">
+                       <option value="1500">빠름 (1.5s)</option>
+                       <option value="3000" selected>보통 (3.0s)</option>
+                       <option value="8000">느림 (8.0s)</option>
+                     </select>
+                   </div>
+                   <div class="flex flex-col gap-1.5">
+                     <label class="text-[10px] text-[#6e7693]">위치 오프셋</label>
+                     <select id="setNotifPosition" class="app-input text-[11px] py-1.5" data-action="save-notif">
+                       <option value="bottom-right" selected>우측 하단 (BR)</option>
+                       <option value="bottom-left">좌측 하단 (BL)</option>
+                       <option value="top-right">우측 상단 (TR)</option>
+                       <option value="top-left">좌측 상단 (TL)</option>
+                       <option value="center">화면 중앙 (C)</option>
+                     </select>
+                   </div>
+                 </div>
+                 
+                 <!-- Hidden logic fields to prevent demo.view.js crash -->
+                 <input type="hidden" id="setNotifMode" value="toast" />
+                 <input type="hidden" id="setNotifAutoclose" value="true" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer -->
+    <div class="app-footer absolute bottom-0 left-0 right-0 z-20">
+      <span class="mr-4">Copyright (C) 2026 by develJanMedia All right reserved.</span>
+      <span>Session: <span id="footerSession" class="text-[#eef1fb]">--</span></span>
+      <span class="mx-3 opacity-50">|</span>
+      <span>HWID: <span id="footerHwid" class="text-[#eef1fb]">--</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Backdrop -->
+<div class="fixed inset-0 bg-[#05070ecc] backdrop-blur-[2px] hidden items-center justify-center z-[300]" id="modalOverlay">
+  <div class="bg-[#141a2b] border border-[#262e44] rounded-[12px] w-[380px] shadow-[0_30px_70px_-20px_#000d] max-w-[90vw]" id="modalPanel">
+    <div class="px-5 pt-4 pb-3 border-b border-[#1d2438] text-[14.5px] font-semibold text-[#eef1fb]" id="modalTitle">알림</div>
+    <div class="px-5 py-4 text-[12.5px] text-[#aab2cc] leading-relaxed" id="modalBody"></div>
+    <div class="px-5 pt-3 pb-4 flex justify-end gap-2">
+      <button type="button" class="bg-[#5b6bff] text-white px-4 py-2 rounded-[6px] text-[13px] font-semibold hover:bg-[#7b89ff] transition-colors" data-action="close-modal">확인</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Slots -->
+<div id="toast-bottom-right" class="fixed bottom-6 right-6 flex flex-col items-end gap-2.5 z-[200] pointer-events-none"></div>
+<div id="toast-top-right" class="fixed top-6 right-6 flex flex-col items-end gap-2.5 z-[200] pointer-events-none"></div>
+<div id="toast-bottom-left" class="fixed bottom-6 left-6 flex flex-col items-start gap-2.5 z-[200] pointer-events-none"></div>
+<div id="toast-top-left" class="fixed top-6 left-6 flex flex-col items-start gap-2.5 z-[200] pointer-events-none"></div>
+<div id="toast-center" class="fixed top-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2.5 z-[200] pointer-events-none"></div>
+
+<!-- Simple Script for Custom Settings Panel Tab logic -->
+<script>
+  function switchSettingsPanel(panelId, btn) {
+    document.querySelectorAll('.app-panel').forEach(p => p.classList.add('hidden'));
+    document.getElementById('setPanel' + panelId.charAt(0).toUpperCase() + panelId.slice(1)).classList.remove('hidden');
+    
+    btn.parentElement.querySelectorAll('.app-chip').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+  }
+</script>
+
+<script type="module" src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+/* badge.css — 뱃지/알림 표시 */
+.badge {
+  display: inline-flex; align-items: center;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs); font-weight: var(--font-medium);
+}
+.badge--edition { background: var(--color-bg-hover); color: var(--color-text-secondary); border: 1px solid var(--color-border); }
+.badge--pro     { background: var(--color-pro-dim); color: var(--color-pro); }

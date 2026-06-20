@@ -1,0 +1,60 @@
+/* app.splash.css */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #07050a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.splash {
+  text-align: center;
+  color: #e2e8f0;
+}
+
+.splash__icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.splash__name {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.splash__ver {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+.splash__bar {
+  width: 180px;
+  height: 3px;
+  background: #1e293b;
+  border-radius: 2px;
+  margin: 20px auto 0;
+  overflow: hidden;
+}
+
+.splash__fill {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  animation: load 1.5s ease-in-out forwards;
+}
+
+@keyframes load {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.splash__status {
+  font-size: 12px;
+  color: #cbd5e1;
+  margin-top: 10px;
+  min-height: 18px;
+}

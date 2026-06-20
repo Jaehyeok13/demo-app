@@ -1,0 +1,43 @@
+/* stat-group.css — 시스템 상태 (메모리, CPU, IPC 등) */
+.stat-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-1) 0;
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--text-sm);
+}
+
+.stat-row__label {
+  color: var(--color-text-secondary);
+}
+
+.stat-row__value {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+}
+
+.stat-row__value--success { color: #22c55e; }
+.stat-row__value--danger  { color: #ef4444; }
+
+.progress-bg {
+  width: 100%;
+  height: 4px;
+  background: var(--color-bg-hover);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+.progress-fill--primary   { background: var(--color-primary); }
+.progress-fill--secondary { background: #8b5cf6; }

@@ -1,0 +1,5 @@
+/* pro.css — body[data-edition='pro'] 오버라이드만 */
+body[data-edition='pro'] .pro-only   { display: block !important; }
+body[data-edition='pro'] .standard-only { display: none !important; }
+body[data-edition='pro'] .badge--edition { background: var(--color-pro-dim); color: var(--color-pro); border-color: rgba(245,158,11,0.2); }
+body[data-edition='pro'] .lic-card__edition { color: var(--color-pro); }

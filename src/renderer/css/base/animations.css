@@ -1,0 +1,10 @@
+/* animations.css — 전역 keyframe + 공통 transition 클래스 */
+@keyframes fadeIn     { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideIn    { from { transform: translateX(-12px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes pulse      { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+@keyframes spin       { to { transform: rotate(360deg); } }
+@keyframes prism      { 0%,100% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(180deg) scale(1.1); } }
+
+.anim-fade-in { animation: fadeIn var(--transition-base) both; }
+.anim-slide-in { animation: slideIn var(--transition-base) both; }
+.transition { transition: all var(--transition-base); }

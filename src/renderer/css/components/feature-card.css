@@ -1,0 +1,80 @@
+/* feature-card.css — 주요 기능 내비게이션 카드 */
+.feat-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-3);
+}
+
+.feat-grid--full {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  margin-bottom: var(--space-4);
+}
+
+.feat-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  transition: border-color 0.15s, background 0.15s;
+  cursor: pointer;
+  min-height: 160px;
+}
+
+.feat-card:hover:not(.feat-card--locked) {
+  border-color: var(--color-primary);
+  background: var(--color-bg-hover);
+}
+
+.feat-card--active {
+  border-color: var(--color-primary);
+  background: var(--color-primary-dim);
+}
+
+.feat-card--locked {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.feat-card__icon {
+  font-size: 26px;
+}
+
+.feat-card__badge {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  width: fit-content;
+  font-weight: 600;
+}
+
+.feat-card__badge--free {
+  background: rgba(34,197,94,0.15);
+  color: #22c55e;
+}
+
+.feat-card__badge--pro {
+  background: rgba(245,158,11,0.15);
+  color: #f59e0b;
+}
+
+.feat-card__name {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+}
+
+.feat-card__desc {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  flex: 1;
+}
+
+.feat-card__lock {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

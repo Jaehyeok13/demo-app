@@ -1,0 +1,9 @@
+/* reset.css — 브라우저 기본값 초기화만 */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; }
+button { cursor: pointer; border: none; background: none; font: inherit; }
+input, textarea { font: inherit; border: none; outline: none; background: none; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+img { display: block; max-width: 100%; }
+.hidden { display: none !important; }

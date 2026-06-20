@@ -1,0 +1,18 @@
+/* typography.css — 전역 텍스트 스타일 */
+body {
+  font-family : var(--font-sans);
+  font-size   : var(--text-base);
+  color       : var(--color-text-primary);
+  line-height : 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1 { font-size: var(--text-xl); font-weight: var(--font-bold); }
+h2 { font-size: var(--text-lg); font-weight: var(--font-bold); }
+h3 { font-size: var(--text-md); font-weight: var(--font-medium); }
+h4 { font-size: var(--text-base); font-weight: var(--font-medium); }
+p  { color: var(--color-text-secondary); line-height: 1.7; }
+code { font-family: var(--font-mono); font-size: var(--text-sm); background: var(--color-bg-hover); padding: 2px 6px; border-radius: var(--radius-sm); }
+.mono { font-family: var(--font-mono); font-size: var(--text-sm); }
+.hint { font-size: var(--text-sm); color: var(--color-text-muted); margin-top: var(--space-2); }
+.link { font-size: var(--text-sm); color: var(--color-primary); cursor: pointer; }
+.link:hover { color: var(--color-primary-hover); text-decoration: underline; }

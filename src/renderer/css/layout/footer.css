@@ -1,0 +1,56 @@
+/* footer.css */
+.app-footer {
+  height: 40px;
+  background-color: #0a0711;
+  border-top: 1px solid var(--bg-border);
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: rgb(113, 113, 122);
+  font-family: 'JetBrains Mono', monospace;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.app-footer__stats {
+  display: flex;
+  align-items: center;
+}
+.sep { margin: 0 8px; opacity: 0.5; }
+
+.app-footer__status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: rgb(161, 161, 170);
+}
+
+.status-dot {
+  display: inline-block;
+  position: relative;
+}
+.status-dot-core {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgb(16, 185, 129);
+  display: block;
+}
+.status-dot-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgb(16, 185, 129);
+  display: block;
+  position: absolute;
+  inset: 0;
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+  opacity: 0.75;
+}
+@keyframes ping {
+  75%, 100% { transform: scale(2); opacity: 0; }
+}

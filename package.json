@@ -1,0 +1,98 @@
+{
+  "name"       : "demoApp",
+  "version"    : "1.0.0",
+  "description": "Demo-based — Electron app",
+  "main"       : "src/main/main.js",
+  "scripts"    : {
+    "dev"          : "chcp 65001 && electron . --mode=development --inspect",
+    "start"        : "chcp 65001 && cross-env NODE_ENV=production electron .",
+    "build"        : "exit 0",
+    "build:win-n"  : "electron-builder --win nsis --x64 --ia32",
+    "build:win-p"  : "electron-builder --win portable --x64 --ia32",
+    "build:win-all": "npm run build:win-n && npm run build:win-p",
+    "build:mac-m"  : "electron-builder --mac --arm64",
+    "build:mac-i"  : "electron-builder --mac --x64"
+  },
+  "keywords"    : [],
+  "author"      : "develJan",
+  "license"     : "UNLICENSED",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.2.0",
+    "adm-zip"                      : "^0.5.17",
+    "crypto-js"                    : "^4.2.0",
+    "nanoid"                       : "^3.3.11",
+    "node-machine-id"              : "^1.1.12",
+    "xlsx"                         : "^0.18.5"
+  },
+  "devDependencies": {
+    "concurrently"     : "^10.0.0",
+    "cross-env"        : "^7.0.3",
+    "electron"         : "^33.4.11",
+    "electron-builder" : "^24.13.3",
+    "electron-reloader": "^1.2.3"
+  },
+  "build": {
+    "appId"      : "com.develJan.demoApp",
+    "productName": "demoApp",
+    "copyright"  : "Copyright © 2026 develJan",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "package.json",
+      "!node_modules/sortablejs/Sortable.min.js",
+      "!**/*.map",
+      "!**/*.md",
+      "!**/README*",
+      "!**/CHANGELOG*",
+      "!**/LICENSE*",
+      "!**/test/**",
+      "!**/tests/**",
+      "!**/__tests__/**",
+      "!**/spec/**",
+      "!**/docs/**",
+      "!**/examples/**",
+      "!**/example/**",
+      "!node_modules/.cache/**"
+    ],
+    "win": {
+      "icon"       : "resources/icons/win.ico",
+      "compression": "normal"
+    },
+    "nsis": {
+      "oneClick"                          : false,
+      "perMachine"                        : false,
+      "allowElevation"                    : true,
+      "allowToChangeInstallationDirectory": true,
+      "installerLanguages"                : [
+        "ko_KR"
+      ],
+      "shortcutName"            : "demoApp",
+      "uninstallDisplayName"    : "demoApp (데모)",
+      "artifactName"            : "${productName}_Setup_${version}_${arch}.${ext}",
+      "createDesktopShortcut"   : "always",
+      "createStartMenuShortcut" : true,
+      "runAfterFinish"          : true,
+      "unicode"                 : true,
+      "displayLanguageSelector" : false,
+      "deleteAppDataOnUninstall": false,
+      "differentialPackage"     : true
+    },
+    "portable": {
+      "artifactName": "${productName}_Portable_${version}_${arch}.${ext}"
+    },
+    "mac": {
+      "target": [
+        "zip",
+        "pkg"
+      ],
+      "category": "public.app-category.productivity",
+      "icon"    : "resources/icons/mac.icns"
+    },
+    "asar"      : true,
+    "asarUnpack": [
+      "node_modules/korean-lunar-calendar/**/*"
+    ]
+  }
+}

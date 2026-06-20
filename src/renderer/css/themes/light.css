@@ -1,0 +1,11 @@
+/* light.css — html[data-theme='light'] CSS 변수 재정의만 */
+html[data-theme='light'] {
+  --bg-base: #f3f4f6;
+  --bg-surface: #ffffff;
+  --bg-card: #f9fafb;
+  --bg-border: rgba(0, 0, 0, 0.08);
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --accent: #4f46e5;
+  --accent-glow: rgba(79, 70, 229, 0.1);
+}

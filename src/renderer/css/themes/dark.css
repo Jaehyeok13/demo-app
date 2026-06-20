@@ -1,0 +1,77 @@
+/* dark.css — html[data-theme='dark'] CSS 변수 재정의만 */
+html[data-theme='dark'] {
+  --bg-base    : #07050a;
+  --bg-surface : #0c0914;
+  --bg-card    : #120e21;
+  --bg-border  : rgba(255,255,255,0.08);
+  --text-main  : #f4f4f5;
+  --text-muted : #a1a1aa;
+  --accent     : #6366f1;
+}
+
+html[data-theme='midnight'] {
+  --bg-base: #020617;
+  --bg-surface: #0f172a;
+  --bg-card: #1e293b;
+  --bg-border: rgba(6, 182, 212, 0.2);
+  --text-main: #ecfeff;
+  --text-muted: #94a3b8;
+  --accent: #06b6d4;
+  --accent-glow: rgba(6, 182, 212, 0.2);
+}
+
+html[data-theme='focus'] {
+  --bg-base: #022c22;
+  --bg-surface: #064e3b;
+  --bg-card: #0f766e;
+  --bg-border: rgba(16, 185, 129, 0.2);
+  --text-main: #f0fdf4;
+  --text-muted: #a7f3d0;
+  --accent: #10b981;
+  --accent-glow: rgba(16, 185, 129, 0.25);
+}
+
+html[data-theme='ocean'] {
+  --bg-base: #0b1528;
+  --bg-surface: #0f203c;
+  --bg-card: #172e54;
+  --bg-border: rgba(59, 130, 246, 0.25);
+  --text-main: #eff6ff;
+  --text-muted: #93c5fd;
+  --accent: #3b82f6;
+  --accent-glow: rgba(59, 130, 246, 0.2);
+}
+
+html[data-theme='purple'] {
+  --bg-base: #12071f;
+  --bg-surface: #1d0e34;
+  --bg-card: #271444;
+  --bg-border: rgba(168, 85, 247, 0.25);
+  --text-main: #faf5ff;
+  --text-muted: #d8b4fe;
+  --accent: #a855f7;
+  --accent-glow: rgba(168, 85, 247, 0.2);
+}
+
+html[data-theme='sunset'] {
+  --bg-base: #1b0a05;
+  --bg-surface: #27100b;
+  --bg-card: #351811;
+  --bg-border: rgba(249, 115, 22, 0.25);
+  --text-main: #fffaf8;
+  --text-muted: #fdba74;
+  --accent: #f97316;
+  --accent-glow: rgba(249, 115, 22, 0.2);
+}
+
+html[data-theme='forest'] {
+  --bg-base: #06170c;
+  --bg-surface: #0b2414;
+  --bg-card: #12331f;
+  --bg-border: rgba(34, 197, 94, 0.25);
+  --text-main: #f0fdf4;
+  --text-muted: #bbf7d0;
+  --accent: #22c55e;
+  --accent-glow: rgba(34, 197, 94, 0.2);
+}
+

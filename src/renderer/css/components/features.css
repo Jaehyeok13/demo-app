@@ -1,0 +1,94 @@
+/* features.css */
+.features-panel__header {
+  margin-bottom: var(--space-6);
+}
+
+.features-panel__title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  margin-bottom: var(--space-1);
+  margin-top: 0;
+}
+
+.features-panel__desc {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  margin: 0;
+}
+
+/* Base modifications for card in feature view */
+.feat-builder-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.feat-builder-card__header {
+  margin-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-2);
+}
+
+.feat-builder-card__title {
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+}
+
+.feat-builder-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  flex: 1; /* For equal height pushing */
+}
+
+/* Form layouts */
+.feat-form__row {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.feat-form__col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.feat-form__col--mt {
+  margin-top: var(--space-2);
+}
+
+.feat-form__label {
+  display: block;
+  font-size: 11px;
+  font-weight: var(--font-bold);
+  margin-bottom: 4px;
+}
+
+.feat-form__textarea {
+  font-family: inherit;
+  resize: none;
+}
+
+.feat-form__submit {
+  margin-top: var(--space-4);
+}
+
+.feat-storage-viewer {
+  background: rgba(0,0,0,0.25);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2);
+  max-height: 140px;
+  overflow-y: auto;
+  margin-bottom: var(--space-2);
+}
+
+.feat-storage__hint {
+  font-size: 10px;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.feat-storage__actions {
+  margin-top: auto;
+  padding-top: var(--space-2);
+}

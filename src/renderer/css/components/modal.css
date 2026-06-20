@@ -1,0 +1,78 @@
+/* modal.css */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.6);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 50;
+  transition: all 0.2s;
+}
+.modal-overlay.hidden { display: none; }
+
+.modal {
+  width: 100%;
+  background-color: #13101e;
+  border: 1px solid var(--bg-border);
+  border-radius: 16px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transform: scale(1);
+  transition: transform 0.2s;
+  box-sizing: border-box;
+}
+
+.modal--sm { max-width: 384px; height: auto; }
+.modal--md { max-width: 448px; height: auto; }
+.modal--lg { max-width: 512px; height: auto; }
+.modal--xl { max-width: 576px; height: auto; }
+.modal--full { max-width: 768px; height: 85vh; }
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--bg-border);
+  padding-bottom: 12px;
+}
+.modal__title {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: -0.025em;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+.modal__title::before {
+  content: '🔔';
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background-color: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  color: rgb(129, 140, 248);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+.modal__close { background: none; border: none; font-size: 16px; color: rgb(113, 113, 122); cursor: pointer; padding: 0; margin-left: auto; }
+.modal__close:hover { color: #fff; }
+
+.modal__body {
+  font-size: 11.5px;
+  line-height: 1.625;
+  color: rgb(212, 212, 216);
+  min-height: 45px;
+  user-select: text;
+}
+
+.modal__actions { display: flex; justify-content: flex-end; gap: 10px; padding-top: 8px; }
